@@ -1,11 +1,11 @@
-![](http://res.cloudinary.com/zeit-inc/image/upload/v1509936789/repositories/pkg/pkg-banner.png)
+[](http://res.cloudinary.com/zeit-inc/image/upload/v1509936789/repositories/pkg/pkg-banner.png)
 
 # thumbbuddies
 interactive social game
 
 ## TODO
 - ERD
-- stack choices:  build app in xcode and ionic.  see which feels better. go from there.
+- stack choices:  build app in Xcode and Ionic.  see which feels better. go from there.
 - skeleton/structure decisions:
     - ionic or native?
       Most likely this will have to be native.  Sure there might be separate maintenance, but with the potential of growing the UI and the importance of good UI choices is important
