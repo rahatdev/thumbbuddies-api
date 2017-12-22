@@ -79,4 +79,4 @@ interactive social game
 ## Tech
 
 ### ERD
-![]("<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://www.lucidchart.com/documents/embeddedchart/629ff79c-7a7d-49a5-910b-8d702dcd8ef0" id="Bcd0DFmMyJdF"></iframe></div>)
+![](https://www.lucidchart.com/documents/embeddedchart/629ff79c-7a7d-49a5-910b-8d702dcd8ef0)
