@@ -1,4 +1,4 @@
-![](http://res.cloudinary.com/zeit-inc/image/upload/v1509936789/repositories/pkg/pkg-banner.png)
+
 
 # thumbbuddies
 interactive social game
@@ -68,12 +68,15 @@ interactive social game
 ## future:
 - chat
 - character AIs?
--
-
-
 
 
 
 
 ## Future Considerations
 - DB scaling or migration
+
+
+## Tech
+
+### ERD
+![]("https://www.lucidchart.com/documents/embeddedchart/629ff79c-7a7d-49a5-910b-8d702dcd8ef0")
