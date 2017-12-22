@@ -1,4 +1,4 @@
-[](http://res.cloudinary.com/zeit-inc/image/upload/v1509936789/repositories/pkg/pkg-banner.png)
+![](http://res.cloudinary.com/zeit-inc/image/upload/v1509936789/repositories/pkg/pkg-banner.png)
 
 # thumbbuddies
 interactive social game
