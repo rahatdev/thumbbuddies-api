@@ -41,6 +41,7 @@ interactive social game
 + P2:
   - Augmented reality? Video-based confirmation?
 
+--------------------------- issues ----------------------------------
 * players scanning their own characters and replaying over and over for points
   - no points for characters owned by same user
 
