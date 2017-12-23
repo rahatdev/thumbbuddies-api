@@ -73,7 +73,9 @@ interactive social game
 
 
 ## Future Considerations
+### Data
 - DB scaling or migration
+- Are GUIDs needed? If so where, selective or blanket?
 
 
 ## Tech
