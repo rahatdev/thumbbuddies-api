@@ -81,7 +81,7 @@ interactive social game
 ## Tech
 
 ### ERD
-![](https://www.lucidchart.com/publicSegments/view/49baa224-63ad-4813-9c91-56cf8e3af142/image.png)
+![](https://www.lucidchart.com/publicSegments/view/a7dce623-1772-45e7-b327-545b57e0894c/image.png)
 
 ### Notes
 - scoreboard can be determined by querying user/thumbbuddy table intersected with battles.  
