@@ -18,7 +18,13 @@
   },
   "homepage": "https://github.com/rahottie/thumbbuddies#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
     "sequelize": "^4.28.6"
   }
 }
