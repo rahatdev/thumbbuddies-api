@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/rahottie/thumbbuddies/issues"
   },
-  "homepage": "https://github.com/rahottie/thumbbuddies#readme"
+  "homepage": "https://github.com/rahottie/thumbbuddies#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "sequelize": "^4.28.6"
+  }
 }
