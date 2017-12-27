@@ -2,13 +2,10 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('battles', {
-      id: {
+      battleid: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      battleid: {
         type: Sequelize.INTEGER
       },
       player1: {
@@ -18,7 +15,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       winner: {
-        type: Sequelize.INTEGER
+        type: Sequelize.SMALLINT
       },
       status: {
         type: Sequelize.CHAR(8)

@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     userid: { type: Sequelize.INTEGER, primaryKey: true },
     name: DataTypes.STRING,
     username: DataTypes.STRING,
+    password: DataTypes.String(50),
     email: DataTypes.STRING(150),
     facebook: DataTypes.STRING,
     twitter: DataTypes.STRING,
