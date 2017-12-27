@@ -1,3 +1,4 @@
+// DB config items all deprecated, except for secret
 module.exports = {
     database: 'thumbbuddiesdb',
     host: 'rahottech-devdb.cdlrqireruza.us-east-2.rds.amazonaws.com',

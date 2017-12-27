@@ -59,3 +59,4 @@ typings/
 
 # private settings
 backend/config/db-config.js
+backend/config/config.json
