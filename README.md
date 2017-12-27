@@ -80,6 +80,12 @@ interactive social game
 
 ## Tech
 
+### DB
+- Postgres hosted on AWS RDS
+- Sequelize as ORM: 
+  * [github link](https://github.com/sequelize/cli)
+  * [Sequelize documentation](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
+
 ### ERD
 ![](https://www.lucidchart.com/publicSegments/view/a7dce623-1772-45e7-b327-545b57e0894c/image.png)
 
