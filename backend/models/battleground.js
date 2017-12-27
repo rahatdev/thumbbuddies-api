@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var battleground = sequelize.define('battleground', {
-    bgid: DataTypes.INTEGER,
-    battleground: DataTypes.STRING,
+    bgid: { type: Sequelize.INTEGER, primaryKey: true },
+    battleground: DataTypes.STRING(150),
     location: DataTypes.STRING
   }, {
     classMethods: {
