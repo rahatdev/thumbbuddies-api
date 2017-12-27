@@ -11,6 +11,9 @@ const config = require('../config/db-config'),
 
 
 // get user
+router.get('/get', (req, res) => {
+    console.log('Getting user...');
+})
 // authenticate user
 // put user
 router.post('/register', (req, res, next) => {

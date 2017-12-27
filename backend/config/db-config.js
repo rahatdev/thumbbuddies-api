@@ -5,3 +5,5 @@ module.exports = {
     password: 'tas',
     secret: '$%^TMBUD&)*'
 }
+
+//npm install pg --save
