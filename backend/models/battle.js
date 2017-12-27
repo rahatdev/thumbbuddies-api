@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var battle = sequelize.define('battle', {
-    battleid: DataTypes.INTEGER,
+    battleid: { type: Sequelize.BIGINT, primaryKey: true },
     player1: DataTypes.INTEGER,
     player2: DataTypes.INTEGER,
-    winner: DataTypes.INTEGER,
+    winner: DataTypes.SMALLINT,
     status: DataTypes.CHAR(8),
     battleground: DataTypes.INTEGER,
     score: DataTypes.SMALLINT,
