@@ -6,13 +6,17 @@ const express = require('express'),
     passport = require('passport');
 
 const config = require('../config/db-config'),
-      user = require('../models/user');
+      User = require('../models/user');
 
 
 
 // get user
 router.get('/get', (req, res) => {
     console.log('Getting user...');
+    User.findOne().then((user) => {
+        console.log(user);
+    })
+
 })
 // authenticate user
 // put user

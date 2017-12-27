@@ -1,3 +1,13 @@
+/*
+TODO:
+
+What is a good way to structure the dB layer?
+- should all gets/puts be on the model or on a separate layer/file?
+- how much logic should be on the db (sp/functions) and how much on the node server?
+- should an ORM be used or a more tactile driver?
+
+*/
+
 'use strict';
  
 const Sequelize = require('sequelize');
