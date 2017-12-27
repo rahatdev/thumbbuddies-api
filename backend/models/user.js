@@ -1,6 +1,4 @@
 'use strict';
-
-'use strict';
  
 const Sequelize = require('sequelize');
 
