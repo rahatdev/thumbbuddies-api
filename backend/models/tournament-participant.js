@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var tournament - participant = sequelize.define('tournament-participant', {
-    tournament: DataTypes.INTEGER,
+  var tournamentParticipant = sequelize.define('tournament-participant', {
+    tournament: { type: Sequelize.INTEGER, primaryKey: true },
     user: DataTypes.INTEGER,
     registrationdate: DataTypes.DATE,
     status: DataTypes.CHAR(8)
@@ -12,5 +12,5 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-  return tournament - participant;
+  return tournamentParticipant;
 };

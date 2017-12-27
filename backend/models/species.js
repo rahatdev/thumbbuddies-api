@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var species = sequelize.define('species', {
-    speciesid: DataTypes.SMALLINT,
+    speciesid: { type: Sequelize.SMALLINT, primaryKey: true },
     species: DataTypes.STRING(50),
     description: DataTypes.STRING
   }, {

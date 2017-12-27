@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     userid: { type: Sequelize.INTEGER, primaryKey: true },
     name: DataTypes.STRING,
     username: DataTypes.STRING,
-    email: DataTypes.STRING,
+    email: DataTypes.STRING(150),
     facebook: DataTypes.STRING,
     twitter: DataTypes.STRING,
     instagram: DataTypes.STRING,
