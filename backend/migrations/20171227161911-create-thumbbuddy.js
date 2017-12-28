@@ -8,17 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tbid: {
-        type: Sequelize.INTEGER
-      },
       thumbbuddy: {
         type: Sequelize.STRING(50)
       },
       species: {
-        type: Sequelize.SMALLINT
+        type: Sequelize.SMALLINT,
+        references: {model: 'species', key: 'id'}
       },
       user: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: 'users', key: 'id'}
       },
       color: {
         type: Sequelize.STRING(50)
