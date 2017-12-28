@@ -76,6 +76,9 @@ interactive social game
 ### Data
 - DB scaling or migration
 - Are GUIDs needed? If so where, selective or blanket?
+- System/method to change db schema without losing data
+- Way to update running production version without loss of sevice (AWS load balancers?)
+- Automate all the things: Jenkins, Octopus, Docker?
 
 
 ## Tech
