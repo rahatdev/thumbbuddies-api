@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      bgid: {
-        type: Sequelize.INTEGER
-      },
       battleground: {
         type: Sequelize.STRING
       },

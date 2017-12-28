@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      speciesid: {
-        type: Sequelize.SMALLINT
-      },
       species: {
         type: Sequelize.STRING(50)
       },

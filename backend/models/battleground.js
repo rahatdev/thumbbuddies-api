@@ -1,7 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var battleground = sequelize.define('battleground', {
-    bgid: { type: Sequelize.INTEGER, primaryKey: true },
+  var Battleground = sequelize.define('battleground', {
     battleground: DataTypes.STRING(150),
     location: DataTypes.STRING
   }, {
@@ -11,5 +10,5 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-  return battleground;
+  return Battleground;
 };
