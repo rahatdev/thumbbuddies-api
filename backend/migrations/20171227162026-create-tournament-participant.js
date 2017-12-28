@@ -1,18 +1,20 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('tournament-participants', {
+    return queryInterface.createTable('tournamentparticipants', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tournament: {
-        type: Sequelize.INTEGER
+      tournamentid: {
+        type: Sequelize.INTEGER,
+        references: {model: 'tournaments', key: 'id'}
       },
-      user: {
-        type: Sequelize.INTEGER
+      userid: {
+        type: Sequelize.INTEGER,
+        references: {model: 'users', key: 'id'}
       },
       registrationdate: {
         type: Sequelize.DATE

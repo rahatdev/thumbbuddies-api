@@ -11,11 +11,11 @@ module.exports = {
       thumbbuddy: {
         type: Sequelize.STRING(50)
       },
-      species: {
+      speciesid: {
         type: Sequelize.SMALLINT,
         references: {model: 'species', key: 'id'}
       },
-      user: {
+      userid: {
         type: Sequelize.INTEGER,
         references: {model: 'users', key: 'id'}
       },
