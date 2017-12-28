@@ -1,17 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var tournament = sequelize.define('tournament', {
-    tournamentid: { type: Sequelize.INTEGER, primaryKey: true },
+  var Tournament = sequelize.define('tournament', {
     tournament: DataTypes.STRING(150),
-    battleground: DataTypes.INTEGER,
+    //battleground: DataTypes.INTEGER,
     startdate: DataTypes.DATE,
     enddate: DataTypes.DATE
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        Tournament.belongsTo(models.Battleground, { foreignKey: 'bgid'});
       }
     }
   });
-  return tournament;
+  return Tournament;
 };

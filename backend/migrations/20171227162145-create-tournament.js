@@ -8,14 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tournamentid: {
-        type: Sequelize.INTEGER
-      },
       tournament: {
         type: Sequelize.STRING(150)
       },
-      battleground: {
-        type: Sequelize.INTEGER
+      bgid: {
+        type: Sequelize.INTEGER,
+        references: {model: 'battlegrounds', key: 'id'}
       },
       startdate: {
         type: Sequelize.DATE
