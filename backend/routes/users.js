@@ -6,7 +6,8 @@ const express = require('express'),
     passport = require('passport');
 
 const config = require('../config/db-config');
-const User = require('../models');
+//const models = require('../models');
+const User = require('../models').user;
 
 
 
@@ -16,7 +17,9 @@ router.get('/get', (req, res) => {
     // User.findOne().then((user) => {
     //     console.log(user);
     // })
-    const user = models.User.build({
+
+    
+    const user = User.build({
         name: 'Test User',
         username: 'testuser',
         password: 'pass',
@@ -32,7 +35,27 @@ router.get('/get', (req, res) => {
 // authenticate user
 // put user
 router.post('/register', (req, res, next) => {
-    User.testMethod('this is a test message from users/register');    
+    let newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+        facebook: req.body.facebook,
+        twitter: req.body.twitter,
+        instagram: req.body.instagram,
+        status: 'PEND'
+    });
+    
+
+    User.createUser(newUser, (err, user) => {
+        res.send(user);
+    })
+
+    //console.log(newUser);
+
+   
+
 })
 // update user
 // recover lost password

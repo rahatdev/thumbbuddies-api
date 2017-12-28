@@ -3,12 +3,16 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     name: DataTypes.STRING,
     username: DataTypes.STRING(100),
-    password: DataTypes.String(50),
+    password: DataTypes.STRING(50),
     email: DataTypes.STRING(150),
     facebook: DataTypes.STRING,
     twitter: DataTypes.STRING,
     instagram: DataTypes.STRING,
-    status: DataTypes.CHAR(8)
+    status: DataTypes.CHAR(8) //Should this be Sequelize.ENUM?
+    // status: {
+    // type: Sequelize.ENUM,
+    // values: ['ACTIVE', 'INACTIVE', 'UNVERIFIED', 'FLAGGED']
+    //}
   }, {
     classMethods: {
       associate: function(models) {
@@ -20,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
   return User;
 };
 
+module.exports.createUser = (newUser, callback) => {
+    callback(null, 'Hi from user model');
+}
 
 /*
 How do you add foreign keys?
