@@ -51,8 +51,8 @@ router.post('/register', (req, res, next) => {
     //res.send({success: false, user: newUser});
 
     createUser(newUser, (err, user) => {
-        if(err) res.send({ success: false, msg: err})
-        res.send({success: true, user: user });
+        if (err) res.send({ success: false, msg: err })
+        res.send({ success: true, user: user });
     })
 
     //console.log(newUser);
@@ -69,9 +69,9 @@ router.post('/register', (req, res, next) => {
 //TODO unit tests
 function getUserByUsername(username, callback) {
     console.log('entering getUserByUsername ...  with username: ' + username);
-    User.findOne({ where: { username: username } }).then(user => {
-        console.log('user is... ' + user);
-    });
+    User.findOne({ where: { username: username } })
+        .then(user => { callback(null, user); })
+        .catch((err) => { callback(err) });
 }
 
 function createUser(newUser, callback) {
@@ -89,9 +89,9 @@ function createUser(newUser, callback) {
         if (err) handleErr(err);
         if (!user) {
             bcrypt.genSalt(10, (err, salt) => {
-                console.log('salt is ' +salt);
+                console.log('salt is ' + salt);
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    console.log('hash is ' +hash);
+                    console.log('hash is ' + hash);
                     if (err) handleErr;
                     newUser.password = hash;
                     newUser.save().then(callback);
