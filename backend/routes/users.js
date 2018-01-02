@@ -34,6 +34,10 @@ router.get('/get', (req, res) => {
 
 })
 // authenticate user
+router.get('/authenticate', (req, res) => {
+    
+})
+
 // put user
 router.post('/register', (req, res, next) => {
     let newUser = User.build({
@@ -64,34 +68,31 @@ router.post('/register', (req, res, next) => {
 
 //TODO unit tests
 function getUserByUsername(username, callback) {
-    console.log('entering getUserByUsername ...  with username: ' + username);
+    //console.log('entering getUserByUsername ...  with username: ' + username);
     User.findOne({ where: { username: username } })
         .then(user => {
-            console.log('then...  ' + user);
+            //console.log('then...  ' + user);
              callback(null, user);
              })
         .catch(err => { 
-            console.log('catch... ' + err);
+            //console.log('catch... ' + err);
             callback(err);
          });
 }
 
 function createUser(newUser, callback) {
-    console.log('entering create user...')
+   // console.log('entering create user...')
     // input validation
     if (!newUser.name) return new Error('Name is required');
     if (!newUser.username) return new Error('Username is required');
     if (!newUser.password) return new Error('Password is required');
     if (!newUser.email) return new Error('Email is required.');
 
-    console.log('past input validation...');
     //would findOrCreate be better?
     getUserByUsername(newUser.username, (err, user) => {
         console.log('callback for getUserByUsername...');
         if (err) handleErr(err);
-        console.log('... user... ' + user);
         if (!user) {
-            console.log('should not get in here if there is a user')
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     if (err) handleErr;
