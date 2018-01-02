@@ -51,13 +51,9 @@ router.post('/register', (req, res, next) => {
     //res.send({success: false, user: newUser});
 
     createUser(newUser, (err, user) => {
-        if (err) res.send({ success: false, msg: err })
-        res.send({ success: true, user: user });
+        if (err) res.send({ success: false, msg: err.message });
+        else res.send({ success: true, user: user });
     })
-
-    //console.log(newUser);
-
-
 
 })
 // update user
@@ -70,8 +66,14 @@ router.post('/register', (req, res, next) => {
 function getUserByUsername(username, callback) {
     console.log('entering getUserByUsername ...  with username: ' + username);
     User.findOne({ where: { username: username } })
-        .then(user => { callback(null, user); })
-        .catch((err) => { callback(err) });
+        .then(user => {
+            console.log('then...  ' + user);
+             callback(null, user);
+             })
+        .catch(err => { 
+            console.log('catch... ' + err);
+            callback(err);
+         });
 }
 
 function createUser(newUser, callback) {
@@ -87,19 +89,20 @@ function createUser(newUser, callback) {
     getUserByUsername(newUser.username, (err, user) => {
         console.log('callback for getUserByUsername...');
         if (err) handleErr(err);
+        console.log('... user... ' + user);
         if (!user) {
+            console.log('should not get in here if there is a user')
             bcrypt.genSalt(10, (err, salt) => {
-                console.log('salt is ' + salt);
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    console.log('hash is ' + hash);
                     if (err) handleErr;
                     newUser.password = hash;
-                    newUser.save().then(callback);
+                    newUser.save()
+                        .then(user => { callback(null, user) })
+                        .catch(err => { callback(err) });
                 })
             })
-
         } else {
-            return new Error('Username already exists');
+            callback(new Error(newUser.username + ' already exists'));
         }
     })
 }
@@ -107,7 +110,7 @@ function createUser(newUser, callback) {
 
 function handleErr(err) {
     //TODO
-    console.log(err.message);
+    console.log('Error caught: ' + err.message);
 }
 
 
