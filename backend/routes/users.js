@@ -1,5 +1,3 @@
-import { compare } from '../../../../../Library/Caches/typescript/2.6/node_modules/@types/bcryptjs';
-
 'use strict';
 
 const express = require('express'),
@@ -86,8 +84,11 @@ router.post('/register', (req, res, next) => {
 
     //res.send({success: false, user: newUser});
 
+    //TODO hanlde user errors approprately - some errors need to be reported back to user
+    //  such as username already exists. Others, such as backend connection errors,
+    //  should have a generic message.
     createUser(newUser, (err, user) => {
-        if (err) res.send({ success: false, msg: err.message });
+        if (err) handleErr(err); //res.send({ success: false, msg: ''}); 
         else res.send({ success: true, user: user });
     })
 
@@ -151,6 +152,8 @@ function comparePassword(enteredPassword, hash, callback){
 function handleErr(err) {
     //TODO
     console.log('Error caught: ' + err.message);
+    console.log('detailed...');
+    console.log(err);
 }
 
 
