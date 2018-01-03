@@ -26,24 +26,24 @@ router.post('/authenticate', (req, res) => {
 
     //rewrite with promises?
     getUserByUsername(username, (err, user) => {
-        if(err) {
-            res.send({success: false, msg: 'Authentication error.'});
+        if (err) {
+            res.send({ success: false, msg: 'Authentication error.' });
             handleErr(err);
             return;
-        } 
-        
-        if(!user){
-            res.send({success: false, msg: 'username not found'});
+        }
+
+        if (!user) {
+            res.send({ success: false, msg: 'username not found' });
         } else {
             comparePassword(password, user.password, (err, isMatch) => {
-                if(err) {
-                    res.send({success: false, msg: 'Authentication error.'});
+                if (err) {
+                    res.send({ success: false, msg: 'Authentication error.' });
                     handleErr(err);
                     return;
-                } 
+                }
 
-                if(isMatch){
-                    const token = jwt.sign({ data: user }, config.secret, {expiresIn: 3600});
+                if (isMatch) {
+                    const token = jwt.sign({ data: user }, config.secret, { expiresIn: 3600 });
                     res.send({
                         success: true,
                         msg: 'Login successful',
@@ -59,7 +59,7 @@ router.post('/authenticate', (req, res) => {
                         }
                     })
                 } else {
-                    res.send({success:false, msg: 'Password did not match'});
+                    res.send({ success: false, msg: 'Password did not match' });
                 }
             })
         }
@@ -93,11 +93,13 @@ router.post('/register', (req, res, next) => {
     })
 
 })
+
 // update user
 // recover lost password
 // get user score
 
 // get info from facebook api?
+// sign in with google or facebook
 
 //TODO unit tests
 function getUserByUsername(username, callback) {
@@ -105,18 +107,18 @@ function getUserByUsername(username, callback) {
     User.findOne({ where: { username: username } })
         .then(user => {
             //console.log('then...  ' + user);
-             callback(null, user);
-             })
-        .catch(err => { 
+            callback(null, user);
+        })
+        .catch(err => {
             //console.log('catch... ' + err);
             callback(err);
-         });
+        });
 }
 
 function createUser(newUser, callback) {
-   // console.log('entering create user...')
+    // console.log('entering create user...')
     // input validation
-    if (!newUser.name) return new Error('Name is required');
+    if (!newUser.name) return new Error({ message: 'Name is required', type: 'tb'});
     if (!newUser.username) return new Error('Username is required');
     if (!newUser.password) return new Error('Password is required');
     if (!newUser.email) return new Error('Email is required.');
@@ -136,14 +138,14 @@ function createUser(newUser, callback) {
                 })
             })
         } else {
-            callback(new Error(newUser.username + ' already exists'));
+            callback(new Error({ message: newUser.username + ' already exists', type: 'tb'}));
         }
     })
 }
 
-function comparePassword(enteredPassword, hash, callback){
+function comparePassword(enteredPassword, hash, callback) {
     bcrypt.compare(enteredPassword, hash, (err, isMatch) => {
-        if(err) handleErr(err);
+        if (err) handleErr(err);
         else callback(null, isMatch);
     })
 }
@@ -152,8 +154,12 @@ function comparePassword(enteredPassword, hash, callback){
 function handleErr(err) {
     //TODO
     console.log('Error caught: ' + err.message);
-    console.log('detailed...');
-    console.log(err);
+    if(err.type === 'tb') {
+        console.log('Error type is indeed tb');
+        res.send({success: false, msg: err.message});
+    } else {
+        console.log('err type is not tb');
+    }
 }
 
 
