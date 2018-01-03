@@ -1,3 +1,5 @@
+import { compare } from '../../../../../Library/Caches/typescript/2.6/node_modules/@types/bcryptjs';
+
 'use strict';
 
 const express = require('express'),
@@ -19,6 +21,7 @@ router.get('/get', (req, res) => {
 })
 
 // authenticate user
+// TODO limit to x number of tries per hour for single user
 router.post('/authenticate', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
@@ -34,7 +37,33 @@ router.post('/authenticate', (req, res) => {
         if(!user){
             res.send({success: false, msg: 'username not found'});
         } else {
+            comparePassword(password, user.password, (err, isMatch) => {
+                if(err) {
+                    res.send({success: false, msg: 'Authentication error.'});
+                    handleErr(err);
+                    return;
+                } 
 
+                if(isMatch){
+                    const token = jwt.sign({ data: user }, config.secret, {expiresIn: 3600});
+                    res.send({
+                        success: true,
+                        msg: 'Login successful',
+                        token: 'JWT ' + token,
+                        user: {
+                            id: user.id,
+                            name: user.name,
+                            username: user.username,
+                            email: user.email,
+                            facebook: user.facebook,
+                            twitter: user.twitter,
+                            instagram: user.instagram
+                        }
+                    })
+                } else {
+                    res.send({success:false, msg: 'Password did not match'});
+                }
+            })
         }
 
     })
@@ -108,6 +137,13 @@ function createUser(newUser, callback) {
         } else {
             callback(new Error(newUser.username + ' already exists'));
         }
+    })
+}
+
+function comparePassword(enteredPassword, hash, callback){
+    bcrypt.compare(enteredPassword, hash, (err, isMatch) => {
+        if(err) handleErr(err);
+        else callback(null, isMatch);
     })
 }
 
