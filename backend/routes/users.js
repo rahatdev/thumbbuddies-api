@@ -15,27 +15,30 @@ const User = require('../models').user;
 // get user
 router.get('/get', (req, res) => {
     console.log('Getting user...');
-    // User.findOne().then((user) => {
-    //     console.log(user);
-    // })
-
-
-    // const user = User.build({
-    //     name: 'Test User',
-    //     username: 'testuser',
-    //     password: 'pass',
-    //     email: 'test@user.com',
-    //     status: 'INACTIVE'
-    // });
-
-    // user.save().then((newUser) => {
-    //     console.log(newUser);
-    // })
 
 })
+
 // authenticate user
-router.get('/authenticate', (req, res) => {
-    
+router.post('/authenticate', (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+
+    //rewrite with promises?
+    getUserByUsername(username, (err, user) => {
+        if(err) {
+            res.send({success: false, msg: 'Authentication error.'});
+            handleErr(err);
+            return;
+        } 
+        
+        if(!user){
+            res.send({success: false, msg: 'username not found'});
+        } else {
+
+        }
+
+    })
+
 })
 
 // put user
