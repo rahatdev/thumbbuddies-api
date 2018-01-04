@@ -9,6 +9,7 @@ const express = require('express'),
 const config = require('../config/db-config');
 //const models = require('../models');
 const User = require('../models').user;
+//const TBerror = require('../models/tberror').TBerror; //TODO custom error
 
 
 
@@ -88,13 +89,16 @@ router.post('/register', (req, res, next) => {
     //  such as username already exists. Others, such as backend connection errors,
     //  should have a generic message.
     createUser(newUser, (err, user) => {
-        if (err) handleErr(err); //res.send({ success: false, msg: ''}); 
+        if (err) res.send({ success: false, msg: err.message}); //handleErr(err); //TODO only display certain messages
         else res.send({ success: true, user: user });
     })
 
 })
 
 // update user
+router.post('/update/:id', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    //TODO
+})
 // recover lost password
 // get user score
 
@@ -106,11 +110,9 @@ function getUserByUsername(username, callback) {
     //console.log('entering getUserByUsername ...  with username: ' + username);
     User.findOne({ where: { username: username } })
         .then(user => {
-            //console.log('then...  ' + user);
             callback(null, user);
         })
         .catch(err => {
-            //console.log('catch... ' + err);
             callback(err);
         });
 }
@@ -118,7 +120,7 @@ function getUserByUsername(username, callback) {
 function createUser(newUser, callback) {
     // console.log('entering create user...')
     // input validation
-    if (!newUser.name) return new Error({ message: 'Name is required', type: 'tb'});
+    if (!newUser.name) return new Error('Name is required');
     if (!newUser.username) return new Error('Username is required');
     if (!newUser.password) return new Error('Password is required');
     if (!newUser.email) return new Error('Email is required.');
@@ -138,7 +140,7 @@ function createUser(newUser, callback) {
                 })
             })
         } else {
-            callback(new Error({ message: newUser.username + ' already exists', type: 'tb'}));
+            callback(new Error(newUser.username + ' already exists'));
         }
     })
 }
@@ -154,12 +156,12 @@ function comparePassword(enteredPassword, hash, callback) {
 function handleErr(err) {
     //TODO
     console.log('Error caught: ' + err.message);
-    if(err.type === 'tb') {
-        console.log('Error type is indeed tb');
-        res.send({success: false, msg: err.message});
-    } else {
-        console.log('err type is not tb');
-    }
+    // if(err.type === 'tb') {
+    //     console.log('Error type is indeed tb');
+     //   res.send({success: false, msg: err.message});
+    // } else {
+    //     console.log('err type is not tb');
+    // }
 }
 
 
