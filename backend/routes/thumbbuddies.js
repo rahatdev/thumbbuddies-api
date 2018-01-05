@@ -60,7 +60,7 @@ function createThumbbuddy(newThumbbuddy) {
         // input validation 
 
         newThumbbuddy.save()
-            .then(resolve(thumbbuddy))
+            .then(resolve(newThumbbuddy))
             .catch(reject(err));
     })
 }
@@ -70,3 +70,6 @@ function createThumbbuddy(newThumbbuddy) {
 function handleErr(err) {
     console.log('Error caught: ' + err);
 }
+
+
+module.exports = router;

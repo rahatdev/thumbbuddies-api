@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   var Thumbbuddy = sequelize.define('thumbbuddy', {
     thumbbuddy: {
       type: DataTypes.STRING(50),
+      unique: true,
       allowNull: false
     },
     //speciesid: DataTypes.SMALLINT,

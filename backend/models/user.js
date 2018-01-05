@@ -1,5 +1,5 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
+const user = module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     name: DataTypes.STRING,
     username: {
@@ -31,9 +31,11 @@ module.exports = (sequelize, DataTypes) => {
   return User;
 };
 
-module.exports.createUser = (newUser, callback) => {
-    callback(null, 'Hi from user model');
-}
+// module.exports.getUserById = (id) => {
+//   return new Promise((resolve, reject) => {
+//     //TODO
+//   })
+// }
 
 /*
 How do you add foreign keys?

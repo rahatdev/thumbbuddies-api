@@ -26,7 +26,7 @@ require('./config/passport-config')(passport);
 
 // routes
 app.use('/users', users);
-//app.use('/thumbbuddies', thumbbuddies);
+app.use('/tb', thumbbuddies);
 
 //production public path
 // const publicpath = 'public/index.html';
