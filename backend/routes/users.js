@@ -14,8 +14,8 @@ const User = require('../models').user;
 
 
 // get user
-router.get('/get', (req, res) => {
-    console.log('Getting user...');
+router.get('/profile/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    
 
 })
 
