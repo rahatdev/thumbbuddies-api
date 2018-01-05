@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Thumbbuddy = sequelize.define('thumbbuddy', {
-    thumbbuddy: DataTypes.STRING(50),
+    thumbbuddy: {
+      type: DataTypes.STRING(50),
+      allowNull: false
+    },
     //speciesid: DataTypes.SMALLINT,
     //userid: DataTypes.INTEGER,
     color: DataTypes.STRING(50),

@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     },  //DataTypes.STRING(100),
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     email: DataTypes.STRING(150),
     facebook: DataTypes.STRING,
     twitter: DataTypes.STRING,
