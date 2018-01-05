@@ -15,7 +15,14 @@ const User = require('../models').user;
 
 // get user
 router.get('/profile/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-    
+    let id = req.query.param1;
+    User.findById(id)
+    .then(user => {
+        res.send({ success: true, user: user});
+    })
+    .catch(err => {
+        res.send({success: false, msg: err.message});
+    })
 
 })
 
