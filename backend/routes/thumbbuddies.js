@@ -49,7 +49,13 @@ router.post('/update/:id', passport.authenticate('jwt', { session: false }), (re
 
 // assign thumbbuddy to new owner
 router.post('/assign', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-    //TODO
+    let userid = req.body.userid;
+    let tbid = req.body.tbid;
+
+    addThumbbuddy(userid, tbid)
+        .then(result => { res.send({ success: true, result: result }) })
+        .catch(err => { res.send({ success: false, msg: err.message }) })
+
 })
 
 
@@ -62,6 +68,40 @@ function createThumbbuddy(newThumbbuddy) {
         newThumbbuddy.save()
             .then(resolve(newThumbbuddy))
             .catch(reject(err));
+    })
+}
+
+function addThumbbuddy(userid, thumbbuddyid) {
+    return new Promise((resolve, reject) => {
+
+        Thumbbuddy.update(
+            { userid: userid, status: 'OWNED' },
+            { where: { id: thumbbuddyid } })
+            .then(result => {
+                console.log('result...')
+                console.log(result)
+                resolve(result)
+            }).catch(err => {
+                reject(err)
+            })
+
+        //user exists 
+        //thum exists
+        // User.findById(userid)
+        //     .then(Thumbbuddy.findById(thumbbuddyid)) //user exists
+        //     .then((thumbbuddy) => {
+        //         console.log('adding tb....')
+        //         thumbbuddy.update({ userid: userid, status: 'OWNED' }).then((result) => {
+        //             console.log('result...');
+        //             console.log(result)
+        //             resolve(result)
+        //         })
+        //     }) //tb exists
+        //     .catch(err => {
+        //         console.log('addThumbbuddy error caught: .. ')
+        //         console.log(err.message);
+        //         reject(err);
+        //     })
     })
 }
 

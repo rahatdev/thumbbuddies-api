@@ -51,7 +51,7 @@ router.post('/authenticate', (req, res) => {
                 }
 
                 if (isMatch) {
-                    const token = jwt.sign({ data: user }, config.secret, { expiresIn: 3600 });
+                    const token = jwt.sign({ data: user }, config.secret, { expiresIn: 360000 });
                     res.send({
                         success: true,
                         msg: 'Login successful',
@@ -158,7 +158,6 @@ function comparePassword(enteredPassword, hash, callback) {
         else callback(null, isMatch);
     })
 }
-
 
 function handleErr(err) {
     //TODO
