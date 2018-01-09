@@ -63,6 +63,9 @@ interactive social game
 ### Battlegrounds
 - battlegrounds - designated locations that have higher points per battlegrounds.
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript/examples/map-geolocation)
+- Need to standardize location data storage
+- need routes to determine if location within radius
+- need routes to get battlegrounds within radius
 
 
 ### Tournaments
