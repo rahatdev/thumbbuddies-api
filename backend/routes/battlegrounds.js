@@ -6,7 +6,7 @@ const passport = require('passport')
 
 const Battleground = require('../models').battleground
 
-router.post('/new', passport('jwt', { session: false }), (req, res, next) => {
+router.post('/new', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     let bg = req.body.name
     let location = req.body.location  //verify location against maps api
 
@@ -19,13 +19,13 @@ router.post('/new', passport('jwt', { session: false }), (req, res, next) => {
 })
 
 // Do these routes need to be protected?
-router.get('/get', passport('jwt', { session: false }), (req, res, next) => {
+router.get('/get', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     Battleground.findAll()
         .then(bgs => res.send({ success: true, battlegrounds: bgs }))
         .catch(err => res.send({ success: false, msg: err.message }))
 })
 
-router.get('/get/:id', passport('jwt', { session: false }), (req, res, next) => {
+router.get('/get/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     let id = req.query.param1
 
     Battleground.findOne({ where: { id: id } })
