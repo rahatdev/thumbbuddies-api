@@ -60,8 +60,12 @@ interactive social game
 
 
 
-### Tournaments & Battlegrounds
+### Battlegrounds
 - battlegrounds - designated locations that have higher points per battlegrounds.
+- [Google Maps API](https://developers.google.com/maps/documentation/javascript/examples/map-geolocation)
+
+
+### Tournaments
 - tournaments can be hosted on battlegrounds.  Winners get extra points, and a multiplier for each leg of victories.  I.e quarter-final is a 2x, semi: 5x, final: 10x
 
 

@@ -30,6 +30,7 @@ app.use('/users', users)
 app.use('/tb', thumbbuddies)
 app.use('/species', species)
 app.use('/battles', battles)
+app.user('/battlegrounds', battlegrounds)
 
 //production public path
 // const publicpath = 'public/index.html';
