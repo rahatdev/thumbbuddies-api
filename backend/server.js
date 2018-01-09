@@ -10,7 +10,7 @@ const bodyParser = require('body-parser'),
 const users = require('./routes/users'),
       thumbbuddies = require('./routes/thumbbuddies'),
       species = require('./routes/species'),
-      battles = require('./routes/thumbbuddies'),
+      battles = require('./routes/battles'),
       battlegrounds = require('./routes/battlegrounds'),
       tournaments = require('./routes/tournaments')
 
@@ -29,6 +29,7 @@ require('./config/passport-config')(passport);
 app.use('/users', users)
 app.use('/tb', thumbbuddies)
 app.use('/species', species)
+app.use('/battles', battles)
 
 //production public path
 // const publicpath = 'public/index.html';
