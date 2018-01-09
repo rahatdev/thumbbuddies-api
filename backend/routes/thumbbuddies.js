@@ -52,9 +52,26 @@ router.post('/assign', passport.authenticate('jwt', { session: false }), (req, r
     let userid = req.body.userid;
     let tbid = req.body.tbid;
 
-    addThumbbuddy(userid, tbid)
-        .then(result => { res.send({ success: true, result: result }) })
-        .catch(err => { res.send({ success: false, msg: err.message }) })
+    // userexists
+    User.findOne({ where: { id = userid } })
+        .then(user => {
+            if (!user) throw new Error('User does not exist')
+            else
+                Thumbbuddy.update(
+                    { userid: userid, status: 'OWNED' },
+                    { where: { id: thumbbuddyid } })
+                    .then(tb => res.send({ success: true, thumbbuddy: tb }))
+
+        })
+        .catch(err => res.send({ success: false, msg: err.message }))
+    // then tb exists
+    // then updatetb w/ user
+    // then return 
+    // catch error
+
+    // addThumbbuddy(userid, tbid)
+    //     .then(result => { res.send({ success: true, result: result }) })
+    //     .catch(err => { res.send({ success: false, msg: err.message }) })
 
 })
 
