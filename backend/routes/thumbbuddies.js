@@ -78,8 +78,8 @@ function addThumbbuddy(userid, thumbbuddyid) {
             { userid: userid, status: 'OWNED' },
             { where: { id: thumbbuddyid } })
             .then(result => {
-                console.log('result...')
-                console.log(result)
+                //console.log('result...')
+                //console.log(result)
                 resolve(result)
             }).catch(err => {
                 reject(err)
