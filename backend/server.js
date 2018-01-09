@@ -9,6 +9,7 @@ const bodyParser = require('body-parser'),
 
 const users = require('./routes/users'),
       thumbbuddies = require('./routes/thumbbuddies'),
+      species = require('./routes/species'),
       battles = require('./routes/thumbbuddies'),
       battlegrounds = require('./routes/battlegrounds'),
       tournaments = require('./routes/tournaments')
@@ -25,8 +26,9 @@ app.use(passport.session());
 require('./config/passport-config')(passport);
 
 // routes
-app.use('/users', users);
-app.use('/tb', thumbbuddies);
+app.use('/users', users)
+app.use('/tb', thumbbuddies)
+app.use('/species', species)
 
 //production public path
 // const publicpath = 'public/index.html';

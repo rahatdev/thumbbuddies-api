@@ -4,7 +4,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 
-const Species = require('../models').Species
+const Species = require('../models').species
 
 
 
@@ -35,3 +35,4 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
         .catch(err => res.send({ success: false, msg: err.message }))
 })
 
+module.exports = router
