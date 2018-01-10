@@ -52,27 +52,17 @@ router.post('/assign', passport.authenticate('jwt', { session: false }), (req, r
     let userid = req.body.userid;
     let tbid = req.body.tbid;
 
-    // userexists
     User.findOne({ where: { id: userid } })
         .then(user => {
             if (!user) throw new Error('User does not exist')
             else
                 Thumbbuddy.update(
                     { userid: userid, status: 'OWNED' },
-                    { where: { id: thumbbuddyid } })
+                    { where: { id: tbid } })
                     .then(tb => res.send({ success: true, thumbbuddy: tb }))
 
         })
         .catch(err => res.send({ success: false, msg: err.message }))
-    // then tb exists
-    // then updatetb w/ user
-    // then return 
-    // catch error
-
-    // addThumbbuddy(userid, tbid)
-    //     .then(result => { res.send({ success: true, result: result }) })
-    //     .catch(err => { res.send({ success: false, msg: err.message }) })
-
 })
 
 
@@ -88,6 +78,7 @@ function createThumbbuddy(newThumbbuddy) {
     })
 }
 
+//not needed
 function addThumbbuddy(userid, thumbbuddyid) {
     return new Promise((resolve, reject) => {
 
@@ -101,24 +92,6 @@ function addThumbbuddy(userid, thumbbuddyid) {
             }).catch(err => {
                 reject(err)
             })
-
-        //user exists 
-        //thum exists
-        // User.findById(userid)
-        //     .then(Thumbbuddy.findById(thumbbuddyid)) //user exists
-        //     .then((thumbbuddy) => {
-        //         console.log('adding tb....')
-        //         thumbbuddy.update({ userid: userid, status: 'OWNED' }).then((result) => {
-        //             console.log('result...');
-        //             console.log(result)
-        //             resolve(result)
-        //         })
-        //     }) //tb exists
-        //     .catch(err => {
-        //         console.log('addThumbbuddy error caught: .. ')
-        //         console.log(err.message);
-        //         reject(err);
-        //     })
     })
 }
 
