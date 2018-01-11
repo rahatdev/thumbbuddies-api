@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var TournamentParticipant = sequelize.define('tournamentparticipant', {
-    tournamentid: { type: Sequelize.INTEGER, primaryKey: true }, //FK
+    tournamentid: { type: DataTypes.INTEGER, primaryKey: true }, //FK
     userid: DataTypes.INTEGER, //FK
     registrationdate: DataTypes.DATE,
     status: DataTypes.CHAR(8)
