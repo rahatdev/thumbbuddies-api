@@ -10,6 +10,7 @@ const User = require('../models').user;
 const Species = require('../models').species;
 
 // get thumbbuddy by id
+// get/params?param1=
 router.get('/get/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     //TODO - join with species and user
     let id = req.query.param1;
@@ -26,18 +27,14 @@ router.get('/get/:id', passport.authenticate('jwt', { session: false }), (req, r
 // search thumbbuddy
 // put thumbbuddy //not for public
 router.post('/create', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-    let newThumbbuddy = Thumbbuddy.build({
+   Thumbbuddy.create({
         thumbbuddy: req.body.tbname,
+        speciesid: Number.parseInt(req.body.speciesid),
         color: req.body.color, //should this be a factor of the species?
         status: 'NEW'
-    });
-
-    createThumbbuddy(newThumbbuddy)
-        .then(thumbbuddy => {
-            res.send({ success: true, thumbbuddy: thumbbuddy });
-        }).catch(err => {
-            res.send({ success: false, msg: err.message });
-        })
+    })
+        .then(thumbbuddy => res.send({success:true, thumbbuddy: thumbbuddy}))
+        .catch(err => res.send({success: false, msg: err.message}))
 
 })
 
@@ -68,32 +65,33 @@ router.post('/assign', passport.authenticate('jwt', { session: false }), (req, r
 
 //================== internal methods =====================
 
-function createThumbbuddy(newThumbbuddy) {
-    return new Promise((resolve, reject) => {
-        // input validation 
+// not needed
+// function createThumbbuddy(newThumbbuddy) {
+//     return new Promise((resolve, reject) => {
+//         // input validation 
 
-        newThumbbuddy.save()
-            .then(resolve(newThumbbuddy))
-            .catch(reject(err));
-    })
-}
+//         newThumbbuddy.save()
+//             .then(resolve(newThumbbuddy))
+//             .catch(reject(err));
+//     })
+// }
 
 //not needed
-function addThumbbuddy(userid, thumbbuddyid) {
-    return new Promise((resolve, reject) => {
+// function addThumbbuddy(userid, thumbbuddyid) {
+//     return new Promise((resolve, reject) => {
 
-        Thumbbuddy.update(
-            { userid: userid, status: 'OWNED' },
-            { where: { id: thumbbuddyid } })
-            .then(result => {
-                //console.log('result...')
-                //console.log(result)
-                resolve(result)
-            }).catch(err => {
-                reject(err)
-            })
-    })
-}
+//         Thumbbuddy.update(
+//             { userid: userid, status: 'OWNED' },
+//             { where: { id: thumbbuddyid } })
+//             .then(result => {
+//                 //console.log('result...')
+//                 //console.log(result)
+//                 resolve(result)
+//             }).catch(err => {
+//                 reject(err)
+//             })
+//     })
+// }
 
 
 //TODO - actually handle the error

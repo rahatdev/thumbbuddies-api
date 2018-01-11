@@ -6,18 +6,18 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       allowNull: false
     },
-    //speciesid: DataTypes.SMALLINT,
-    //userid: DataTypes.INTEGER,
+    speciesid: DataTypes.SMALLINT,
+    userid: DataTypes.INTEGER,
     color: DataTypes.STRING(50),
     status: DataTypes.CHAR(8)
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        Thumbbuddy.belongsTo(models.Species, {foreignKey: 'speciesid'});
-        Thumbbuddy.belongsTo(models.User, {foreignKey: 'userid'});
+      classMethods: {
+        associate: function (models) {
+          // associations can be defined here
+          Thumbbuddy.belongsTo(models.Species, { foreignKey: { name: 'speciesid', allowNull: false } });
+          Thumbbuddy.belongsTo(models.User, { foreignKey: 'userid' });
+        }
       }
-    }
-  });
+    });
   return Thumbbuddy;
 };
