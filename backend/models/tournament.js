@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var Tournament = sequelize.define('tournament', {
     tournament: DataTypes.STRING(150),
-    //battleground: DataTypes.INTEGER,
+    bgid: DataTypes.INTEGER, //FK
     startdate: DataTypes.DATE,
     enddate: DataTypes.DATE
   }, {

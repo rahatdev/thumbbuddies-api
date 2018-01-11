@@ -2,13 +2,13 @@
 module.exports = (sequelize, DataTypes) => {
   const Battle = sequelize.define('battle', {
     //battleid: { type: Sequelize.BIGINT, primaryKey: true },
-    //player1id: DataTypes.INTEGER, //FK
-    //player2id: DataTypes.INTEGER, //FK
+    player1id: DataTypes.INTEGER, //FK
+    player2id: DataTypes.INTEGER, //FK
     winner: DataTypes.SMALLINT, // 1=player1, 2=player2, 0=none 
     status: DataTypes.CHAR(8),
-    //bgid: DataTypes.INTEGER, //FK
+    bgid: DataTypes.INTEGER, //FK
     score: DataTypes.SMALLINT,
-    //tournamentid: DataTypes.INTEGER  //FK
+    tournamentid: DataTypes.INTEGER  //FK
   }, {
     classMethods: {
       associate: function(models) {
