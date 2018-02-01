@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "rahottie",
-    "password": "tas",
-    "database": "thumbbuddiesdb",
-    "host": "rahottech-devdb.cdlrqireruza.us-east-2.rds.amazonaws.com",
+    "username": "",
+    "password": "t",
+    "database": "",
+    "host": "",
     "dialect": "postgres"
   },
   "test": {
