@@ -3,26 +3,6 @@
 # thumbbuddies
 interactive social game
 
-## TODO
-- ERD
-- stack choices:  build app in Xcode and Ionic.  see which feels better. go from there.
-- skeleton/structure decisions:
-    - ionic or native?
-      Most likely this will have to be native.  Sure there might be separate maintenance, but with the potential of growing the UI and the importance of good UI choices is important
-    - Mongo or Postgres?: Start with Postgres due to the strong relationships between entities.  Potential future migration to mongo depending on growth.
-- Backend:
-  - setup Postgres on AWS
-  - initial db schema and dummy data
-  - node backend for gets and puts.  separate micro services?
-
-- Frontend-iOS
-  - Native
-
-- Frontend-Web
-  - Angular
-
-
-
 ## Features
 
 ### Characters
@@ -59,7 +39,6 @@ interactive social game
 ### Scoring
 
 
-
 ### Battlegrounds
 - battlegrounds - designated locations that have higher points per battlegrounds.
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript/examples/map-geolocation)
@@ -75,7 +54,6 @@ interactive social game
 ## future:
 - chat
 - character AIs?
-
 
 
 
